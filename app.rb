@@ -40,6 +40,12 @@ class HangpersonApp < Sinatra::Base
   post '/guess' do
     letter = params[:guess].to_s[0]
     ### YOUR CODE HERE ###
+    if letter == nil || letter =~ /[^a-zA-Z]/
+      flash[:message] = "Invalid guess."
+      redirect '/show'
+    end
+    
+    #the following does NOT catch the ArgErr
     turn = @game.guess(letter)
     if turn == ArgumentError
       flash[:message] = "Invalid guess."
@@ -72,7 +78,7 @@ class HangpersonApp < Sinatra::Base
       erb :win # You may change/remove this line
     else
       erb :show
-      redirect '/new'
+      redirect '/show' #/new
     end
   end
   
@@ -82,7 +88,7 @@ class HangpersonApp < Sinatra::Base
       erb :lose # You may change/remove this line
     else
       erb :show
-      redirect '/new'
+      redirect '/show' #/new
     end
   end
   
