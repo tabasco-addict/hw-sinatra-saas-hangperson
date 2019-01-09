@@ -60,25 +60,29 @@ class HangpersonApp < Sinatra::Base
       redirect '/win'
     elsif @game.check_win_or_lose == :lose
       redirect '/lose'
+    elsif @game.check_win_or_lose == :create
+      redirect '/'
     end
     erb :show # You may change/remove this line
   end
   
   get '/win' do
     ### YOUR CODE HERE ### -- prevent manual entry of /win on to url to result in a win
-    if @game.check_win_or_lose == :win
+    if @game.check_win_or_lose == :win #&& @word
       erb :win # You may change/remove this line
     else
       erb :show
+      redirect '/new'
     end
   end
   
   get '/lose' do
     ### YOUR CODE HERE ###
-    if @game.check_win_or_lose == :lose
+    if @game.check_win_or_lose == :lose #&& @word
       erb :lose # You may change/remove this line
     else
       erb :show
+      redirect '/new'
     end
   end
   

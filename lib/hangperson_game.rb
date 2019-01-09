@@ -19,8 +19,11 @@ class HangpersonGame
   def check_win_or_lose()
     if word_with_guesses.include?('-') && wrong_guesses.size == 7
       return :lose
-    elsif not word_with_guesses.include?('-')
+    elsif word_with_guesses.empty? == false && word_with_guesses.include?('-') == false
       return :win
+    end
+    if word_with_guesses.empty? || word == ''
+      return :create
     end
     :play
   end
