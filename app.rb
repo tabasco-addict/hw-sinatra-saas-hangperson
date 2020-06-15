@@ -2,6 +2,14 @@ require 'sinatra/base'
 require 'sinatra/flash'
 require './lib/hangperson_game.rb'
 
+require 'sinatra'
+
+class MyApp < Sinatra::Base
+  get '/' do
+    "<!DOCTYPE html><html><head></head><body><h1>It works!!</h1></body></html>"
+  end
+end
+
 class HangpersonApp < Sinatra::Base
 
   enable :sessions
